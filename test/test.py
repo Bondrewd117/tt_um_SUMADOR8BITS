@@ -15,12 +15,12 @@ async def test_counter_reset(dut):
     cocotb.start_soon(clock.start())
 
     # Reset activo bajo
-    dut.rst.value = 0
-    dut.enable.value = 0
+    dut.rst_n.value = 0
+    dut.ena.value = 0
     await ClockCycles(dut.clk, 2)
 
     # Liberar reset
-    dut.rst.value = 1
+    dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1)
 
     if dut.count.value.integer != 0:
@@ -39,14 +39,14 @@ async def test_counter_enable(dut):
     cocotb.start_soon(clock.start())
 
     # Reset
-    dut.rst.value = 0
-    dut.enable.value = 0
+    dut.rst_n.value = 0
+    dut.ena.value = 0
     await ClockCycles(dut.clk, 2)
-    dut.rst.value = 1
+    dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1)
 
     # Habilitar el contador
-    dut.enable.value = 1
+    dut.ena.value = 1
     await ClockCycles(dut.clk, 5)
 
     expected = 5
@@ -70,20 +70,20 @@ async def test_counter_disable(dut):
     cocotb.start_soon(clock.start())
 
     # Reset
-    dut.rst.value = 0
-    dut.enable.value = 0
+    dut.rst_n.value = 0
+    dut.ena.value = 0
     await ClockCycles(dut.clk, 2)
-    dut.rst.value = 1
+    dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1)
 
     # Contar 3 ciclos con enable=1
-    dut.enable.value = 1
+    dut.ena.value = 1
     await ClockCycles(dut.clk, 3)
 
     prev_value = dut.c.value.integer
 
     # Deshabilitar contador
-    dut.enable.value = 0
+    dut.ena.value = 0
     await ClockCycles(dut.clk, 5)
 
     observed = dut.c.value.integer
