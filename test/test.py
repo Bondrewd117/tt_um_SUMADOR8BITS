@@ -23,7 +23,7 @@ async def test_counter_reset(dut):
     dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1)
 
-    if dut.count.value.integer != 0:
+    if dut.c.value.integer != 0:
         raise TestFailure(f"El contador no se reseteó. Valor={dut.c.value.integer}")
 
     dut._log.info("✔ Reset funcionando correctamente")
