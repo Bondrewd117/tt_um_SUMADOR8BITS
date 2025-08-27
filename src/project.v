@@ -22,7 +22,7 @@ module tt_um_SUMADOR8BITS (
   wire enable;
   wire [7:0] c;
 
-  assign enable  = ui_in[0];  // Example: ou_out is the sum of ui_in and uio_in
+  assign enable = ui_in[0];  // Example: ou_out is the sum of ui_in and uio_in
   assign uo_out[7:0] = c;
 
   SUMADOR8BITS SUMADOR8BITS_Unit(

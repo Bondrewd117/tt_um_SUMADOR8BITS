@@ -1,0 +1,221 @@
+$date
+	Wed Aug 27 15:12:58 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb $end
+$var wire 8 ! c [7:0] $end
+$var wire 1 " enable $end
+$var wire 8 # ui_in [7:0] $end
+$var wire 8 $ uio_oe [7:0] $end
+$var wire 8 % uio_out [7:0] $end
+$var wire 8 & uo_out [7:0] $end
+$var reg 1 ' clk $end
+$var reg 1 ( ena $end
+$var reg 1 ) rst_n $end
+$var reg 8 * uio_in [7:0] $end
+$scope module user_project $end
+$var wire 1 ' clk $end
+$var wire 1 ( ena $end
+$var wire 1 ) rst_n $end
+$var wire 8 + ui_in [7:0] $end
+$var wire 8 , uio_in [7:0] $end
+$var wire 8 - uio_oe [7:0] $end
+$var wire 8 . uio_out [7:0] $end
+$var wire 8 / uo_out [7:0] $end
+$var wire 1 0 enable $end
+$var wire 8 1 c [7:0] $end
+$var wire 1 2 _unused $end
+$scope module SUMADOR8BITS_Unit $end
+$var wire 1 ' clk $end
+$var wire 1 0 enable $end
+$var wire 1 ) rst $end
+$var reg 8 3 c [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 3
+02
+b0 1
+00
+b0 /
+b0 .
+b0 -
+bx ,
+b0 +
+bx *
+0)
+1(
+1'
+b0 &
+b0 %
+b0 $
+b0 #
+z"
+b0 !
+$end
+#50000
+0'
+#100000
+1)
+1'
+#150000
+0'
+#200000
+1'
+#200001
+0)
+#250001
+0'
+#300001
+1'
+#350001
+0'
+#400001
+1)
+1'
+#450001
+0'
+#500001
+10
+b1 #
+b1 +
+1'
+#550001
+0'
+#600001
+b1 !
+b1 &
+b1 /
+b1 1
+b1 3
+1'
+#650001
+0'
+#700001
+b10 !
+b10 &
+b10 /
+b10 1
+b10 3
+1'
+#750001
+0'
+#800001
+b11 !
+b11 &
+b11 /
+b11 1
+b11 3
+1'
+#850001
+0'
+#900001
+b100 !
+b100 &
+b100 /
+b100 1
+b100 3
+1'
+#950001
+0'
+#1000001
+b101 !
+b101 &
+b101 /
+b101 1
+b101 3
+1'
+#1000002
+00
+b0 !
+b0 &
+b0 /
+b0 1
+b0 3
+b0 #
+b0 +
+0)
+#1050002
+0'
+#1100002
+1'
+#1150002
+0'
+#1200002
+1'
+#1250002
+0'
+#1300002
+1)
+1'
+#1350002
+0'
+#1400002
+10
+b1 #
+b1 +
+1'
+#1450002
+0'
+#1500002
+b1 !
+b1 &
+b1 /
+b1 1
+b1 3
+1'
+#1550002
+0'
+#1600002
+b10 !
+b10 &
+b10 /
+b10 1
+b10 3
+1'
+#1650002
+0'
+#1700002
+b11 !
+b11 &
+b11 /
+b11 1
+b11 3
+1'
+#1750002
+0'
+#1800002
+00
+b0 #
+b0 +
+b100 !
+b100 &
+b100 /
+b100 1
+b100 3
+1'
+#1850002
+0'
+#1900002
+1'
+#1950002
+0'
+#2000002
+1'
+#2050002
+0'
+#2100002
+1'
+#2150002
+0'
+#2200002
+1'
+#2200003

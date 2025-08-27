@@ -13,7 +13,7 @@ module tb ();
     #1;
   end
 
-   wire enable;
+  wire enable;
    
 
   // Wire up the inputs and outputs:
@@ -21,7 +21,7 @@ module tb ();
   reg rst_n;
   reg ena;
    
-   reg [7:0] ui_in = {7'b0,enable};
+  wire [7:0] ui_in = {7'b0,enable};
   reg [7:0] uio_in;
   wire [7:0] uo_out;
   wire [7:0] uio_out;
