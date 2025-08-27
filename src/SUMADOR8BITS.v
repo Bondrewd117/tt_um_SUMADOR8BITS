@@ -1,14 +1,14 @@
-module counter(
+module SUMADOR8BITS(
 	input clk,
 	input rst,
 	input enable,
-	ouput reg [7:0] count
+	ouput reg [7:0] c
 );
 
 	always@(posedge clk or negedge rst) begin
 		if(!rst)
-			count=0;
+			c=0;
 		else if(en)
-			count=count+1;
+			c=c+1;
 	end
 endmodule
