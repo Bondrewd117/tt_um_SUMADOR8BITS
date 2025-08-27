@@ -7,8 +7,8 @@ module SUMADOR8BITS(
 
 	always@(posedge clk or negedge rst) begin
 		if(!rst)
-			c=0;
+			c <= 8'd0;
 		else if(enable)
-			c=c+1;
+			c <= c + 1'b1;
 	end
 endmodule
