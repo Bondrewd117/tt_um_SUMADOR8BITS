@@ -19,7 +19,6 @@ module tt_um_SUMADOR8BITS (
   // All output pins must be assigned. If not used, assign to 0.
   assign uio_oe  = 8'b0000_0000;  // Set all IOs as inputs
   assign uio_out = 8'b0000_0000;  // Drive outputs to 0 when not used
-  assign uio_in = 8'b0000_0000; 
   wire enable;
   wire [7:0] c;
 
@@ -30,7 +29,7 @@ module tt_um_SUMADOR8BITS (
         .clk(clk),
         .rst(rst_n),
         .enable(enable), 
-        .count(c)
+        .c(c)
     );
 
   // List all unused inputs to prevent warnings
