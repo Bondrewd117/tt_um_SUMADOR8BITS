@@ -1,40 +1,96 @@
-# SPDX-FileCopyrightText: © 2024 Tiny Tapeout
-# SPDX-License-Identifier: Apache-2.0
-
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
+from cocotb.result import TestFailure
+
+clk_period = 10  # ns -> 100 MHz
+
+@cocotb.test()
+async def test_counter_reset(dut):
+    """Prueba que el contador se resetee correctamente"""
+    dut._log.info("Iniciando testbench: reset")
+
+    # Configuración del reloj
+    clock = Clock(dut.clk, clk_period, units="ns")
+    cocotb.start_soon(clock.start())
+
+    # Reset activo bajo
+    dut.rst.value = 0
+    dut.enable.value = 0
+    await ClockCycles(dut.clk, 2)
+
+    # Liberar reset
+    dut.rst.value = 1
+    await ClockCycles(dut.clk, 1)
+
+    if dut.count.value.integer != 0:
+        raise TestFailure(f"El contador no se reseteó. Valor={dut.count.value.integer}")
+
+    dut._log.info("✔ Reset funcionando correctamente")
 
 
 @cocotb.test()
-async def test_project(dut):
-    dut._log.info("Start")
+async def test_counter_enable(dut):
+    """Prueba que el contador incremente cuando enable=1"""
+    dut._log.info("Iniciando testbench: enable")
 
-    # Set the clock period to 10 us (100 KHz)
-    clock = Clock(dut.clk, 10, units="us")
+    # Configuración del reloj
+    clock = Clock(dut.clk, clk_period, units="ns")
     cocotb.start_soon(clock.start())
 
     # Reset
-    dut._log.info("Reset")
-    dut.ena.value = 1
-    dut.ui_in.value = 0
-    dut.uio_in.value = 0
-    dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 1
-
-    dut._log.info("Test project behavior")
-
-    # Set the input values you want to test
-    dut.ui_in.value = 20
-    dut.uio_in.value = 30
-
-    # Wait for one clock cycle to see the output values
+    dut.rst.value = 0
+    dut.enable.value = 0
+    await ClockCycles(dut.clk, 2)
+    dut.rst.value = 1
     await ClockCycles(dut.clk, 1)
 
-    # The following assersion is just an example of how to check the output values.
-    # Change it to match the actual expected output of your module:
-    assert dut.uo_out.value == 50
+    # Habilitar el contador
+    dut.enable.value = 1
+    await ClockCycles(dut.clk, 5)
 
-    # Keep testing the module by changing the input values, waiting for
-    # one or more clock cycles, and asserting the expected output values.
+    expected = 5
+    observed = dut.count.value.integer
+
+    dut._log.info(f"Valor esperado: {expected}, observado: {observed}")
+
+    if observed != expected:
+        raise TestFailure(f"Error en conteo con enable=1. Esperado={expected}, Observado={observed}")
+
+    dut._log.info("✔ Enable funcionando correctamente")
+
+
+@cocotb.test()
+async def test_counter_disable(dut):
+    """Prueba que el contador no cambie cuando enable=0"""
+    dut._log.info("Iniciando testbench: disable")
+
+    # Configuración del reloj
+    clock = Clock(dut.clk, clk_period, units="ns")
+    cocotb.start_soon(clock.start())
+
+    # Reset
+    dut.rst.value = 0
+    dut.enable.value = 0
+    await ClockCycles(dut.clk, 2)
+    dut.rst.value = 1
+    await ClockCycles(dut.clk, 1)
+
+    # Contar 3 ciclos con enable=1
+    dut.enable.value = 1
+    await ClockCycles(dut.clk, 3)
+
+    prev_value = dut.count.value.integer
+
+    # Deshabilitar contador
+    dut.enable.value = 0
+    await ClockCycles(dut.clk, 5)
+
+    observed = dut.count.value.integer
+
+    dut._log.info(f"Valor previo: {prev_value}, observado después de disable: {observed}")
+
+    if observed != prev_value:
+        raise TestFailure("Error: el contador cambió aunque enable=0")
+
+    dut._log.info("✔ Disable funcionando correctamente")
