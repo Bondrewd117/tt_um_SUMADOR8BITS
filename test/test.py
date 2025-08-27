@@ -24,7 +24,7 @@ async def test_counter_reset(dut):
     await ClockCycles(dut.clk, 1)
 
     if dut.count.value.integer != 0:
-        raise TestFailure(f"El contador no se reseteó. Valor={dut.count.value.integer}")
+        raise TestFailure(f"El contador no se reseteó. Valor={dut.c.value.integer}")
 
     dut._log.info("✔ Reset funcionando correctamente")
 
@@ -50,7 +50,7 @@ async def test_counter_enable(dut):
     await ClockCycles(dut.clk, 5)
 
     expected = 5
-    observed = dut.count.value.integer
+    observed = dut.c.value.integer
 
     dut._log.info(f"Valor esperado: {expected}, observado: {observed}")
 
@@ -80,13 +80,13 @@ async def test_counter_disable(dut):
     dut.enable.value = 1
     await ClockCycles(dut.clk, 3)
 
-    prev_value = dut.count.value.integer
+    prev_value = dut.c.value.integer
 
     # Deshabilitar contador
     dut.enable.value = 0
     await ClockCycles(dut.clk, 5)
 
-    observed = dut.count.value.integer
+    observed = dut.c.value.integer
 
     dut._log.info(f"Valor previo: {prev_value}, observado después de disable: {observed}")
 
