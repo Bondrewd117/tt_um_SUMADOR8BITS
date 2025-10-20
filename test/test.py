@@ -29,6 +29,37 @@ async def test_counter_reset(dut):
 
     dut._log.info("✔ Reset funcionando correctamente")
 
+@cocotb.test()
+async def test_counter_enable_260(dut):
+    """Prueba que el contador incremente cuando enable=1"""
+    dut._log.info("Iniciando testbench: enable")
+
+    # Configuración del reloj
+    clock = Clock(dut.clk, clk_period, units="ns")
+    cocotb.start_soon(clock.start())
+
+    # Reset
+    dut.rst_n.value = 0
+    dut.ui_in.value = 0
+    dut.ena.value = 1
+    await ClockCycles(dut.clk, 2)
+    dut.rst_n.value = 1
+    await ClockCycles(dut.clk, 1)
+
+    # Habilitar el contador
+    dut.ui_in.value = 1
+    await ClockCycles(dut.clk,260)
+
+    #expected = 4
+    #observed = dut.c.value.integer
+
+    #dut._log.info(f"Valor esperado: {expected}, observado: {observed}")
+
+    #if observed != expected:
+        #raise TestFailure(f"Error en conteo con enable=1. Esperado={expected}, Observado={observed}")
+
+    dut._log.info("✔ Enable funcionando correctamente")
+
 
 @cocotb.test()
 async def test_counter_enable(dut):
@@ -49,7 +80,7 @@ async def test_counter_enable(dut):
 
     # Habilitar el contador
     dut.ui_in.value = 1
-    await ClockCycles(dut.clk, 5)
+    await ClockCycles(dut.clk,5)
 
     expected = 4
     observed = dut.c.value.integer

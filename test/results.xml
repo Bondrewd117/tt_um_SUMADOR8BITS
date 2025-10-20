@@ -1,8 +1,9 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1756329178" />
-    <testcase name="test_counter_reset" classname="test" file="/home/salieri/Escritorio/Maestria/Proyectos/tt_um_SUMADOR8BITS/tt_um_SUMADOR8BITS/test/test.py" lineno="8" time="0.0012972354888916016" sim_time_ns="200.001" ratio_time="154174.7830001838" />
-    <testcase name="test_counter_enable" classname="test" file="/home/salieri/Escritorio/Maestria/Proyectos/tt_um_SUMADOR8BITS/tt_um_SUMADOR8BITS/test/test.py" lineno="33" time="0.0010135173797607422" sim_time_ns="800.001" ratio_time="789331.3089400141" />
-    <testcase name="test_counter_disable" classname="test" file="/home/salieri/Escritorio/Maestria/Proyectos/tt_um_SUMADOR8BITS/tt_um_SUMADOR8BITS/test/test.py" lineno="65" time="0.0012323856353759766" sim_time_ns="1200.0010000000002" ratio_time="973721.9954157479" />
+    <property name="random_seed" value="1760996262" />
+    <testcase name="test_counter_reset" classname="test" file="/home/ral298/tt_um_SUMADOR8BITS/test/test.py" lineno="8" time="0.0010554790496826172" sim_time_ns="200.001" ratio_time="189488.3655531963" />
+    <testcase name="test_counter_enable_260" classname="test" file="/home/ral298/tt_um_SUMADOR8BITS/test/test.py" lineno="32" time="0.014046192169189453" sim_time_ns="26300.001" ratio_time="1872393.6482721255" />
+    <testcase name="test_counter_enable" classname="test" file="/home/ral298/tt_um_SUMADOR8BITS/test/test.py" lineno="64" time="0.0007405281066894531" sim_time_ns="800.0010000000002" ratio_time="1080311.4598531877" />
+    <testcase name="test_counter_disable" classname="test" file="/home/ral298/tt_um_SUMADOR8BITS/test/test.py" lineno="96" time="0.0009057521820068359" sim_time_ns="1200.0010000000002" ratio_time="1324866.8055551464" />
   </testsuite>
 </testsuites>
